@@ -1,0 +1,342 @@
+<!-- 購入画面 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/buy.css" th:href="@{/css/buy.css}" rel="stylesheet">
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/buy.js}"></script>
+<meta charset="UTF-8">
+<title>自動販売機</title>
+</head>
+<body>
+<div class="border border-dark border-2 container">
+<br>
+<br>
+<div class="row d-flex align-items-end"> 
+	<!-- <div style="width:10%;" class="col-sm-1 p-3"></div> -->
+	<div style="width:10%;"></div>
+<!-- 1つ目の飲み物 -->
+    <div style="width:20%;" class="row d-flex justify-content-center" th:object="${drink1}">
+    	<img class="img-fluid border border-dark" th:src="@{*{image}}">
+    	<!-- 冷たい飲み物の場合 -->
+    	<th:block th:if="${drink1.hotcold == 'cold'}">
+  			<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-primary hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+		</th:block>
+		<!-- 温かい飲み物の場合 -->
+    	<th:block th:if="${drink1.hotcold == 'hot'}">
+  			<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-danger hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+		</th:block>
+		<!-- ドリンク1の購入処理 -->
+		<div class="d-flex justify-content-center">
+			<form method="post" th:action="@{/user/purchase}" th:object="${drink1}">
+				<input type="hidden" th:value="*{id}" name="id">
+				<input type="hidden" th:value="*{name}" name="name">
+				<input type="hidden" th:value="*{price}" name="price">
+				<input type="hidden" th:value="*{hotcold}" name="hotcold">
+				<input type="hidden" th:value="*{quantity}" name="quantity">
+				
+				<input type="hidden" id="thousand" name="thousand" th:value="${moneyForm.thousand}">
+				<input type="hidden" id="fiveHundred" name="fiveHundred" th:value="${moneyForm.fiveHundred}">
+				<input type="hidden" id="oneHundred" name="oneHundred" th:value="${moneyForm.oneHundred}">
+				<input type="hidden" id="fifty" name="fifty" th:value="${moneyForm.fifty}">
+				<input type="hidden" id="ten" name="ten" th:value="${moneyForm.ten}">
+				<!-- 在庫が1つ以上あるとき -->
+				<div th:if="${drink1.stock > 0 && moneyFlg}">
+					<!-- 投入金額が足りない場合 -->
+					<input type="submit" th:if="${drink1.price} > ${totalInsert}" value="　〇　" class="btn btn-secondary mt-3" disabled>
+					<!-- 投入金額が足りている場合 -->
+					<input type="hidden" name="totalInsert" th:value=${totalInsert}>
+					<input type="submit" th:if="${drink1.price} <= ${totalInsert}" value="　〇　" class="btn btn-primary mt-3">
+				</div>
+				<!-- 在庫がないとき -->
+				<div th:if="${!(drink1.stock > 0 && moneyFlg)}">
+					<input type="submit" value="　×　" class="btn btn-secondary mt-3" disabled>
+				</div>
+			</form>
+    	</div>
+    </div>
+
+<!-- 2つ目の飲み物 -->
+    <div style="width:20%;" class="row d-flex justify-content-center" th:object="${drink2}">
+    	<img class="img-fluid border border-dark" th:src="@{*{image}}">
+    	<!-- 冷たい飲み物の場合 -->
+    	<th:block th:if="${drink2.hotcold == 'cold'}">
+    		<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-primary hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+    	</th:block>
+    	<!-- 温かい飲み物の場合 -->
+    	<th:block th:if="${drink2.hotcold == 'hot'}">
+    		<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-danger hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+    	</th:block>
+    	<!-- ドリンク2の購入処理 -->
+    	<div class="d-flex justify-content-center">
+			<form method="post" th:action="@{/user/purchase}" th:object="${drink2}">
+				<input type="hidden" th:value="*{id}" name="id">
+				<input type="hidden" th:value="*{name}" name="name">
+				<input type="hidden" th:value="*{price}" name="price">
+				<input type="hidden" th:value="*{hotcold}" name="hotcold">
+				<input type="hidden" th:value="*{quantity}" name="quantity">
+				
+				<input type="hidden" id="thousand" name="thousand" th:value="${moneyForm.thousand}">
+				<input type="hidden" id="fiveHundred" name="fiveHundred" th:value="${moneyForm.fiveHundred}">
+				<input type="hidden" id="oneHundred" name="oneHundred" th:value="${moneyForm.oneHundred}">
+				<input type="hidden" id="fifty" name="fifty" th:value="${moneyForm.fifty}">
+				<input type="hidden" id="ten" name="ten" th:value="${moneyForm.ten}">
+				<!-- 在庫が1つ以上あるとき -->
+				<div th:if="${drink2.stock > 0 && moneyFlg}">
+					<!-- 投入金額が足りない場合 -->
+					<input type="submit" th:if="${drink2.price} > ${totalInsert}" value="　〇　" class="btn btn-secondary mt-3" disabled>
+					<!-- 投入金額が足りている場合 -->
+					<input type="hidden" name="totalInsert" th:value=${totalInsert}>
+					<input type="submit" th:if="${drink2.price} <= ${totalInsert}" value="　〇　" class="btn btn-primary mt-3">
+				</div>
+				<!-- 在庫がないとき -->
+				<div th:if="${!(drink2.stock > 0 && moneyFlg)}">
+					<input type="submit" value="　×　" class="btn btn-secondary mt-3" disabled>
+				</div>
+			</form>
+    	</div>
+    </div>
+    
+<!-- 3つ目の飲み物 -->
+    <div style="width:20%;" class="row d-flex justify-content-center" th:object="${drink3}">
+    	<img class="img-fluid border border-dark" th:src="@{*{image}}">
+    	<!-- 冷たい飲み物の場合 -->
+    	<th:block th:if="${drink3.hotcold == 'cold'}">
+    		<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-primary hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+    	</th:block>
+    	<!-- 温かい飲み物の場合 -->
+    	<th:block th:if="${drink3.hotcold == 'hot'}">
+    		<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-danger hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+    	</th:block>
+    	<!-- ドリンク3の購入処理 -->
+    	<div class="d-flex justify-content-center">
+			<form method="post" th:action="@{/user/purchase}" th:object="${drink3}">
+				<input type="hidden" th:value="*{id}" name="id">
+				<input type="hidden" th:value="*{name}" name="name">
+				<input type="hidden" th:value="*{price}" name="price">
+				<input type="hidden" th:value="*{hotcold}" name="hotcold">
+				<input type="hidden" th:value="*{quantity}" name="quantity">
+				
+				<input type="hidden" id="thousand" name="thousand" th:value="${moneyForm.thousand}">
+				<input type="hidden" id="fiveHundred" name="fiveHundred" th:value="${moneyForm.fiveHundred}">
+				<input type="hidden" id="oneHundred" name="oneHundred" th:value="${moneyForm.oneHundred}">
+				<input type="hidden" id="fifty" name="fifty" th:value="${moneyForm.fifty}">
+				<input type="hidden" id="ten" name="ten" th:value="${moneyForm.ten}">
+				<!-- 在庫が1つ以上あるとき -->
+				<div th:if="${drink3.stock > 0 && moneyFlg}">
+					<!-- 投入金額が足りない場合 -->
+					<input type="submit" th:if="${drink3.price} > ${totalInsert}" value="　〇　" class="btn btn-secondary mt-3" disabled>
+					<!-- 投入金額が足りている場合 -->
+					<input type="hidden" name="totalInsert" th:value=${totalInsert}>
+					<input type="submit" th:if="${drink3.price} <= ${totalInsert}" value="　〇　" class="btn btn-primary mt-3">
+				</div>
+				<!-- 在庫がないとき -->
+				<div th:if="${!(drink3.stock > 0 && moneyFlg)}">
+					<input type="submit" value="　×　" class="btn btn-secondary mt-3" disabled>
+				</div>
+			</form>
+    	</div>
+    </div>
+    
+<!-- 4つ目の飲み物 -->
+    <div style="width:20%;" class="row d-flex justify-content-center" th:object="${drink4}">
+    	<img class="img-fluid border border-dark" th:src="@{*{image}}">
+    	<!-- 冷たい飲み物の場合 -->
+    	<th:block th:if="${drink4.hotcold == 'cold'}">
+    		<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-primary hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+    	</th:block>
+    	<!-- 温かい飲み物の場合 -->
+    	<th:block th:if="${drink4.hotcold == 'hot'}">
+    		<button type="button" class="btn btn-secondary price mt-2" th:text="'¥' + *{price}" disabled>Secondary</button>
+    		<button type="button" class="btn btn-danger hotcold mt-2" th:text="*{hotcold}" disabled>Primary</button>
+    	</th:block>
+    	<!-- ドリンク4の購入処理 -->
+    	<div class="d-flex justify-content-center">
+			<form method="post" th:action="@{/user/purchase}" th:object="${drink4}">
+				<input type="hidden" th:value="*{id}" name="id">
+				<input type="hidden" th:value="*{name}" name="name">
+				<input type="hidden" th:value="*{price}" name="price">
+				<input type="hidden" th:value="*{hotcold}" name="hotcold">
+				<input type="hidden" th:value="*{quantity}" name="quantity">
+				
+				<input type="hidden" id="thousand" name="thousand" th:value="${moneyForm.thousand}">
+				<input type="hidden" id="fiveHundred" name="fiveHundred" th:value="${moneyForm.fiveHundred}">
+				<input type="hidden" id="oneHundred" name="oneHundred" th:value="${moneyForm.oneHundred}">
+				<input type="hidden" id="fifty" name="fifty" th:value="${moneyForm.fifty}">
+				<input type="hidden" id="ten" name="ten" th:value="${moneyForm.ten}">
+				
+				<!-- 在庫が1つ以上あるとき -->
+				<div th:if="${drink4.stock > 0 && moneyFlg}">
+					<!-- 投入金額が足りない場合 -->
+					<input type="submit" th:if="${drink4.price} > ${totalInsert}" value="　〇　" class="btn btn-secondary mt-3" disabled>
+					<!-- 投入金額が足りている場合 -->
+					<input type="hidden" name="totalInsert" th:value=${totalInsert}>
+					<input type="submit" th:if="${drink4.price} <= ${totalInsert}" value="　〇　" class="btn btn-primary mt-3">
+				</div>
+				<!-- 在庫がないとき -->
+				<div th:if="${!(drink4.stock > 0 && moneyFlg)}">
+					<input type="submit" value="　×　" class="btn btn-secondary mt-3" disabled>
+				</div>				
+			</form>
+    	</div>
+    </div>
+ 
+ 	<div style="width:10%;"></div>
+ 	<!-- <div class="col-sm-2 p-3"></div> -->
+  </div>
+ 
+
+<div class="d-flex justify-content-end">
+	<!-- お釣り返却のイラスト -->
+	<img th:src="@{/image/change.png}" alt="" id="change">
+	<!-- 小銭投入口のイラスト -->
+	<img th:src="@{/image/coin_insert.png}" alt="" id="coin" class="money" data-bs-toggle="modal" data-bs-target="#moneyModal">
+</div>
+<div class="d-flex justify-content-end">
+	<!-- お札投入口のイラスト -->
+	<img th:src="@{/image/bill_insert.png}" alt="" id="bill" class="money" data-bs-toggle="modal" data-bs-target="#moneyModal">
+</div>
+
+<div class="row mb-3">
+	<div style="width:10%;"></div>
+	<div class="border border-dark border-2 container" id="takeOut" style="width:71%;">
+		<h4 th:text="${complete}"></h4>
+		<h4 th:text="${change}"></h4>
+	</div>
+	<div style="width:19%;"></div>
+</div>
+
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+    Open modal
+  </button> -->
+
+ 
+ <!-- The Modal -->
+<div class="modal" id="moneyModal" th:if="modalFlg">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+     <!--  <div class="modal-header money-modal">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div> -->
+
+      <!-- お金投入モーダル内容 -->
+      <div class="modal-body money-modal">
+      	<div>
+      		<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      	</div>
+      	<div>
+      		<h3>お金を投入してください。</h3>
+      	</div>
+      	
+      	<form method="post" th:action="@{/user/money}" th:object="${moneyForm}">
+      	<!-- 1000円札 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="thousand">1000円札:</label>
+      		<input type="number" id="thousand" name="thousand" th:value="*{thousand}" max="1" min="0">
+      		<label for="thousand">枚</label>
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('thousand')}" th:errors="*{thousand}"></div>
+        
+        <!-- 500円玉 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="fiveHundred">500円玉:</label>
+      		<input type="number" id="fiveHundred"  th:value="*{fiveHundred}" max="1" min="0">
+      		<label for="fiveHundred">枚</label>
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('fiveHundred')}" th:errors="*{fiveHundred}"></div>
+    	
+    	<!-- 100円玉 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="oneHundred">100円玉:</label>
+      		<input type="number" id="hundred" name="oneHundred" th:value="*{oneHundred}" max="2" min="0">
+      		<label for="oneHundred">枚</label>
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('oneHundred')}" th:errors="*{oneHundred}"></div>
+        
+     	<!-- 50円玉 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="fifty">50円玉:</label>
+      		<input type="number" id="fifty" name="fifty" th:value="*{fifty}" max="4" min="0">
+      		<label for="fifty">枚</label>
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('fifty')}" th:errors="*{fifty}"></div>      
+        
+      	<!-- 10円玉 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="ten">10円玉:</label>
+      		<input type="number" id="ten" name="ten" th:value="*{ten}" max="30" min="0">
+      		<label for="ten">枚</label>
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('ten')}" th:errors="*{ten}"></div>         
+        
+        
+        <div class="d-flex align-items-end float-end">
+        <button type="submit" class="btn purchase btn-primary">購入</button>
+        <button type="button" class="btn purchase btn-danger" data-bs-dismiss="modal">閉じる</button>
+      	</div>
+      	
+      	</form>
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer money-modal">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
+</div> 
+  
+ <!-- The Modal -->
+<div class="modal" id="moneyModal" th:if="modalFlg">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+     <!--  <div class="modal-header money-modal">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div> -->
+
+      <!-- お金投入モーダル内容 -->
+      <div class="modal-body money-modal">
+      	<div>
+      		<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      	</div>
+      	
+      	<form method="post" th:action="@{/user/money}">
+      		<h3>パスワードを入力してください。</h3>
+      		<input type="hidden" id="username" name="username">
+      		<input type="password" id="password" name="password">
+      		<input type="submit">
+      	</form>
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer money-modal">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
+</div> 
+
+</div>
+</body>
+</html>

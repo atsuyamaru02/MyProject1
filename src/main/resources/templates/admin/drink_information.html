@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/change.css" th:href="@{/css/drink.css}" rel="stylesheet">
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>ドリンク情報</title>
+</head>
+<body>
+<div class="container-fluid d-flex flex-column bg-light mt-4 border border-dark">
+	<h3>ドリンク情報</h3>
+	<table class="table table-striped">
+    <thead>
+    	<tr>
+    		<th>ID</th>
+        	<th>Name</th>
+        	<th>Price</th>
+        	<th>Hot or Cold</th>
+        	<th>Stock</th>
+        	<th>Quantity</th>
+    	</tr>
+    </thead>
+    <tbody>
+    	<tr th:each="drink : ${drinkList}">
+    		<td th:text="${drink.id}"></td>
+      		<td th:text="${drink.name}"></td>
+        	<td th:text="${drink.price}"></td>
+        	<td th:text="${drink.hotcold}"></td>
+        	<td th:text="${drink.stock}"></td>
+        	<td th:text="${drink.quantity}"></td>
+        	
+    	</tr>
+    </tbody>
+	</table>
+	<div class="d-flex justify-content-end gap-1">
+		<a href="/admin/change" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">変更</a>
+		<a href="/admin/add" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">補充</a>
+		<a href="/admin/menu" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">戻る</a>
+    </div>
+</div>
+</body>
+</html>

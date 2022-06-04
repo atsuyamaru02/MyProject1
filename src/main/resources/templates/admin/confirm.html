@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<meta charset="UTF-8">
+<title>変更内容確認</title>
+</head>
+<body>
+<div class="container mt-3">
+<h3>変更内容確認</h3>
+<div class="border border-dark border-2　container">
+<table class="table table-bordered　table table-striped">
+    <thead>
+      <tr class="table-primary">
+        <th>変更項目</th>
+        <th>変更内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>変更ID</td>
+        <td　th:text="${changeForm.id}"></td>
+      </tr>
+      <tr>
+        <td>商品名</td>
+       	<td　th:text="${changeForm.name}"></td>
+      </tr>
+      <tr>
+        <td>商品画像</td>
+       	<td>
+       		<img th:src="${changeForm.image}" alt="商品画像">
+       	</td>
+      </tr>
+      <tr>
+        <td>価格</td>
+       	<td　th:text="${changeForm.price}"></td>
+      </tr>
+      <tr>
+        <td>Hot or Cold</td>
+       	<td　th:text="${changeForm.hotcold}"></td>
+      </tr>
+      <tr>
+        <td>品数</td>
+       	<td　th:text="${changeForm.stock}"></td>
+      </tr>
+      <tr>
+        <td>内容量</td>
+       	<td　th:text="${changeForm.quantity}"></td>
+      </tr>          
+      </tbody>
+  </table>
+  </div>
+  <!-- 戻るボタン -->
+ 	<form method="post" th:action="@{/admin/change}" th:object="${changeForm}">
+      	<input type="hidden" name="id" th:value="*{id}">
+      	<input type="hidden" name="name" th:value="*{name}">
+    	<input type="hidden" name="image" th:value="*{image}">
+      	<input type="hidden" name="price" th:value="*{price}">
+      	<input type="hidden" name="hotcold" th:value="*{hotcold}">
+      	<input type="hidden" name="stock" th:value="*{stock}">
+      	<input type="hidden" name="quantity" th:value="*{quantity}">
+		<input type="submit" value="戻る" class="btn btn-primary mt-2 mb-2 float-end">
+	</form>
+	
+	<!-- 変更ボタン -->
+ 	<form method="post" th:action="@{/admin/complete}" th:object="${changeForm}">
+      	<input type="hidden" name="id" th:value="*{id}">
+      	<input type="hidden" name="name" th:value="*{name}">
+    	<input type="hidden" name="image" th:value="*{image}">
+      	<input type="hidden" name="price" th:value="*{price}">
+      	<input type="hidden" name="hotcold" th:value="*{hotcold}">
+      	<input type="hidden" name="stock" th:value="*{stock}">
+      	<input type="hidden" name="quantity" th:value="*{quantity}">
+		<input type="submit" value="変更" class="btn btn-primary m-2 float-end">
+	</form>
+	
+	 </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- 商品変更フォーム -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/change.css" th:href="@{/css/change.css}" rel="stylesheet">
+<meta charset="UTF-8">
+<title>ドリンク変更フォーム</title>
+</head>
+<body>
+<div class="container-fluid bg-light mt-4 d-flex justify-content-center border border-dark">
+	<form method="post" th:action="@{/admin/confirm}" th:object="${changeForm}">
+		<h3>ドリンク変更フォーム</h3>
+		<!-- 変更ID -->
+		<div class="mb-3 mt-3 form-group">
+      		<label for="id">変更ID:</label>
+      		<select id="id" name="id" th:value="*{id}">
+      			<option value="1">1</option>
+      			<option value="2">2</option>
+      			<option value="3">3</option>
+      			<option value="4">4</option>
+    		</select>
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+    	<!-- 商品名 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="name">商品名:</label>
+      		<input type="text" id="name" name="name" th:value="*{name}">
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    	<!-- 商品画像 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="image">商品画像:</label>
+      		<input type="text" id="image" name="image" th:value="*{image}">
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
+    	<!-- 価格 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="price">価格:</label>
+      		<input type="text" id="price" name="price" th:value="*{price}">
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+    	<!-- Hot or Cold -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="hotcold">Hot or Cold:</label>
+      		<select class="hotcold" id="hotcold" name="hotcold" th:value="*{hotcold}">
+      			<option>hot</option>
+      			<option>cold</option>
+    		</select>
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('hotcold')}" th:errors="*{hotcold}"></div>
+    	<!-- 品数 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="stock">品数:</label>
+      		<input type="text" id="stock" name="stock" th:value="*{stock}">
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></div>
+    	<!-- 内容量 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="quantity">内容量:</label>
+      		<input type="text" id="quantity" name="quantity" th:value="*{quantity}">
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></div>
+    	<!-- 変更ボタン -->
+    	<div class="float-end">
+    		<input type="submit" value="　変更　" class="btn btn-primary mt-3 mb-2">
+			<a href="/admin/menu" class="btn btn-primary mt-3 mb-2" tabindex="-1" role="button">戻る</a>
+    	</div>
+			
+	</form>
+</div>
+</body>
+</html>

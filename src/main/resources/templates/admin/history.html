@@ -1,0 +1,43 @@
+<!-- 商品購入履歴 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/datatables.min.css" th:href="@{/css/datatables.min.css}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/datatables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/history.js}"></script>
+<meta charset="UTF-8">
+<title>購入履歴</title>
+</head>
+<body>
+<div class="border border-dark mt-4 mb-4 border-2 container">
+<h1>購入履歴</h1>
+<table id="historyTable" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Hot or Cold</th>
+        <th>Quantity</th>
+        <th>Buydatetime</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="history : ${historyList}">
+      	<td th:text="${history.name}"></td>
+        <td th:text="${history.price}"></td>
+        <td th:text="${history.hotcold}"></td>
+        <td th:text="${history.quantity}"></td>
+        <td th:text="${history.buydatetime}"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-end">
+	<a href="/admin/menu" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">戻る</a>
+  </div>
+</div>
+</body>
+</html>

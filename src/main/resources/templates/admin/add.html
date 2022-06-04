@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/change.css" th:href="@{/css/change.css}" rel="stylesheet">
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/add.js}"></script>
+<meta charset="UTF-8">
+<title>ドリンク補充フォーム</title>
+</head>
+<body>
+<div class="container-fluid bg-light mt-4 d-flex justify-content-center border border-dark">
+	<form method="post"  id="addForm" th:action="@{/admin/add}" th:object="${addForm}">
+		<h3>ドリンク補充フォーム</h3>
+		<h4 class="bg-success text-white" th:if="${complete} != null" th:text="${complete}"></h4>
+		<!-- 対象ID -->
+		<div class="mb-3 mt-3 form-group">
+      		<label for="id">対象ID:</label>
+      		<select id="id" name="id" th:value="*{id}">
+      			<option value="0">選択してください</option>
+      			<option value="1">1</option>
+      			<option value="2">2</option>
+      			<option value="3">3</option>
+      			<option value="4">4</option>
+    		</select>
+    	</div>	
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="name">商品名:</label>
+      		<input type="text" id="name" name="name" th:value="*{name}" disabled>
+    	</div>
+    	<!-- 追加数 -->
+    	<div class="mb-3 mt-3 form-group">
+      		<label for="stock">追加数:</label>
+      		<input type="number" id="stock" name="stock" th:value="*{stock}"> 
+    	</div>
+    	<div class="text-danger mb-4" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></div>
+    	<!-- 追加ボタン -->
+    	<div class="float-end">
+    		<input type="submit" value="　追加　" class="btn btn-primary mt-3 mb-2">
+			<a href="/admin/menu" class="btn btn-primary mt-3 mb-2" tabindex="-1" role="button">戻る</a>
+    	</div>
+	</form>
+</div>
+
+</body>
+</html>

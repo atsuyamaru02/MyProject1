@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/change.css" th:href="@{/css/change.css}" rel="stylesheet">
+<meta charset="UTF-8">
+<title>紙幣・貨幣追加フォーム</title>
+</head>
+<body>
+<div class="container-fluid d-flex flex-column bg-light mt-4 border border-dark">
+	<h3>紙幣・貨幣追加フォーム</h3>
+	<h4 class="bg-success text-white" th:if="${complete} != null" th:text="${complete}"></h4>
+	<h4 class="bg-danger text-white" th:if="${errmsg1000} != null" th:text="${errmsg1000}"></h4>
+	<h4 class="bg-danger text-white" th:if="${errmsg500} != null"th:text="${errmsg500}"></h4>
+	<h4 class="bg-danger text-white" th:if="${errmsg100} != null" th:text="${errmsg100}"></h4>
+	<h4 class="bg-danger text-white" th:if="${errmsg50} != null"th:text="${errmsg50}"></h4>
+	<h4 class="bg-danger text-white" th:if="${errmsg10} != null" th:text="${errmsg10}"></h4>
+	<form method="post" th:action="@{/admin/money_add}" th:object="${moneyForm}">
+		<table class="table">
+  			<thead>
+    			<tr>
+      				<th>紙幣・貨幣</th>
+      				<th>枚数</th>
+      				<th>追加枚数</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+    			<tr>
+      				<td>1000円札</td>
+      				<td th:text="${money.thousand} + 枚">枚</td>
+      				<td><input type="number" id="thousand" name="thousand" th:value="*{thousand}"></td>
+    			</tr>
+    			<tr>
+      				<td>500円玉</td>
+      				<td th:text="${money.fiveHundred} + 枚">枚</td>
+      				<td><input type="number" id="fiveHundred" name="fiveHundred" th:value="*{fiveHundred}"></td>
+    			</tr>
+        		<tr>
+      				<td>100円玉</td>
+      				<td th:text="${money.oneHundred} + 枚">枚</td>
+      				<td><input type="number" id="oneHundred" name="oneHundred" th:value="*{oneHundred}"></td>
+    			</tr>
+        		<tr>
+      				<td>50円玉</td>
+      				<td th:text="${money.fifty} + 枚">枚</td>
+      				<td><input type="number" id="fifty" name="fifty" th:value="*{fifty}"></td>
+    			</tr>
+        		<tr>
+      				<td>10円玉</td>
+      				<td th:text="${money.ten} + 枚">枚</td>
+      				<td><input type="number" id="ten" name="ten" th:value="*{ten}"></td>
+    			</tr>
+  			</tbody>
+		</table>		
+	
+		<div class="float-end">
+			<input type="submit" value="追加" class="btn btn-primary mt-2 mb-2">
+    		<a href="/admin/menu" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">戻る</a>
+    	</div>
+	</form>
+</div>
+</body>
+</html>

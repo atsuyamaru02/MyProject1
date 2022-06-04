@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/change.css" th:href="@{/css/change.css}" rel="stylesheet">
+<link href="/css/change.css" th:href="@{/css/menu.css}" rel="stylesheet">
+<meta charset="UTF-8">
+<title>管理者メニュー</title>
+</head>
+<body>
+<div class="container-fluid bg-light mt-4 mb-4 d-flex flex-column justify-content-center border border-dark">
+	<h3>管理者メニュー</h3>
+	<a href="/admin/history" class="btn btn-primary btn-lg" tabindex="-1" role="button">購入履歴</a>
+	<a href="/admin/drink_information" class="btn btn-primary btn-lg" tabindex="-1" role="button">ドリンク情報</a>
+	<a href="/admin/change" class="btn btn-primary btn-lg" tabindex="-1" role="button">ドリンク変更フォーム</a>
+	<a href="/admin/add" class="btn btn-primary btn-lg" tabindex="-1" role="button">ドリンク補充フォーム</a>
+	<a href="/admin/money_stock" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣状況</a>
+	<a href="/admin/money_add" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣追加フォーム</a>
+	<a href="/admin/money_collect" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣回収フォーム</a>
+	<a href="/user/buy" class="btn btn-primary btn-lg" tabindex="-1" role="button">購入画面に戻る</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+#coin{
+	width:60px;
+	height:60px;
+}
+
+#change{
+	width:128.3px;
+	height:103.1px;
+}
+
+#bill{
+	width:128.3px;
+	height:103.1px;
+}
+/* .border{
+	width:600px;
+} */
+
+.price{
+	width:120px;
+	height:38px;
+}
+
+.hotcold{
+	width:120px;
+	height:38px;
+}
+
+.btn-close{
+	float:right;
+}
+
+.modal-body{
+	height: 500px;
+}
+
+.purchase{
+	float:right;
+}
+
+.btnspinner{
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.spinner_area input{
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px;
+    width: auto;
+    vertical-align: middle;
+    /* デフォルトのスピナーを消す */
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+}
+
+.spinner_area input[type="button"]{
+    cursor: pointer;
+}
+
+#takeOut{
+	height:70px;
+}
