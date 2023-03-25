@@ -1,4 +1,8 @@
 @charset "UTF-8";
+#key-hole{
+	width:70px;
+	height:70px;
+}
 
 #coin{
 	width:60px;
@@ -36,6 +40,10 @@
 	height: 500px;
 }
 
+.modal-login-body{
+	height: 300px;
+	width: 500px
+}
 .purchase{
 	float:right;
 }

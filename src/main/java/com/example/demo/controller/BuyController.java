@@ -152,5 +152,10 @@ public class BuyController {
 		}
 		return "user/buy";
 	}
+	
+//	@PostMapping("/login")
+//	public String login() {
+//		return "admin/menu";
+//	}
 
 }
