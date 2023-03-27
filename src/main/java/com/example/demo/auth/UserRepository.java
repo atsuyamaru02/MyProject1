@@ -11,12 +11,6 @@ import com.example.demo.entity.User;
 @Mapper
 public interface UserRepository {
 	
-//	@Query(value = queryfindByUsername, nativeQuery = true)
-	@Select("select * from user where username = #{username}")
+	@Select("select * from users where username = #{username}")
 	Optional<User> findByUsername(String username);
-	
-	//public static final String queryfindByUsername = "select * from user where username = :username";
-	
-	
-
 }
