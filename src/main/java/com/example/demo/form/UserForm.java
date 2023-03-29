@@ -4,7 +4,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.example.demo.validation.UniqueUsername;
+
 public class UserForm {
+	@UniqueUsername
 	@NotNull(message="ユーザー名を入力してください")
 	@Length(min=4, max=50)
 	private String username;
