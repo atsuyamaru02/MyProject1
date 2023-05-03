@@ -9,5 +9,5 @@ public interface UserInfoService {
 	void addUser(User user);
 	
 	// 全ユーザーを取得する
-	List<User> getAll();
+	List<User> findAll();
 }

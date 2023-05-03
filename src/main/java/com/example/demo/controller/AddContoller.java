@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +30,7 @@ public class AddContoller {
 		this.buyService = buyService;
 	}
 	
+	@PreAuthorize("hasAuthority('DRINK')")
 	@GetMapping("/add")
 	public String add(Model model) {
 		AddForm addForm = new AddForm();

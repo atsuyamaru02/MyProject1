@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,12 +21,12 @@ import com.example.demo.service.UserInfoService;
 public class UserController {
 	
 	private final UserInfoService userInfoService;
-
 	
 	public UserController(UserInfoService userInfoService) {
 		this.userInfoService = userInfoService;
 	}
 
+	@PreAuthorize("hasAuthority('INFOADMIN')")
 	@GetMapping("/user_add")
 	public String add(Model model) {
 		UserForm userForm = new UserForm();
@@ -39,7 +40,7 @@ public class UserController {
 			return "admin/user_add";
 		}
 		
-		User user = new User(userForm.getUsername(),userForm.getPassword());
+		User user = new User(userForm.getUsername(),userForm.getPassword(),userForm.getAuthority());
 		
 		userInfoService.addUser(user);
 		
@@ -47,9 +48,10 @@ public class UserController {
 		return "redirect:/admin/user_add";
 	}
 	
+	@PreAuthorize("hasAuthority('INFOADMIN')")
 	@GetMapping("/user_list")
 	public String list(Model model) {
-		List<User> list = userInfoService.getAll();
+		List<User> list = userInfoService.findAll();
 		model.addAttribute("userList",list);
 		return "admin/user_list";
 	}

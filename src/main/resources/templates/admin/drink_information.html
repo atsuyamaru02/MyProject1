@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,8 +39,8 @@
     </tbody>
 	</table>
 	<div class="d-flex justify-content-end gap-1">
-		<a href="/admin/change" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">変更</a>
-		<a href="/admin/add" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">補充</a>
+		<a href="/admin/change" sec:authorize="hasAuthority('DRINK')" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">変更</a>
+		<a href="/admin/add" sec:authorize="hasAuthority('DRINK')" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">補充</a>
 		<a href="/admin/menu" class="btn btn-primary mt-2 mb-2" tabindex="-1" role="button">戻る</a>
     </div>
 </div>

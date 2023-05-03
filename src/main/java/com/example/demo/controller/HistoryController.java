@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class HistoryController {
 	}
 
 	//購入履歴
+	@PreAuthorize("hasAuthority('INFOADMIN')")
 	@GetMapping("/history")
 	public String history(Model model) {
 		List<HistoryEntity> list = historyService.getAll();

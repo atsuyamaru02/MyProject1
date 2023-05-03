@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class MoneyController {
 		this.moneyService = moneyService;
 	}
 	
+	@PreAuthorize("hasAuthority('INFOADMIN')OR('MONEY')")
 	@GetMapping("/money_stock")
 	public String moneyStock(Model model) {
 		MoneyEntity haveMoney = moneyService.haveMoney();
@@ -29,6 +31,7 @@ public class MoneyController {
 		return "admin/money_stock";
 	}
 	
+	@PreAuthorize("hasAuthority('DRINK')")
 	@GetMapping("/money_add")
 	public String moneyAdd(Model model) {
 		MoneyEntity haveMoney = moneyService.haveMoney();
@@ -102,6 +105,7 @@ public class MoneyController {
 		return "redirect:/admin/money_add";
 	}
 	
+	@PreAuthorize("hasAuthority('DRINK')")
 	@GetMapping("/money_collect")
 	public String moneyCollect(Model model) {
 		MoneyEntity haveMoney = moneyService.haveMoney();

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,8 @@ public class DrinkContoller {
 		this.buyService = buyService;
 	}
 	
-	//購入画面へのアクセス
+	//ドリンク情報画面へのアクセス
+	@PreAuthorize("hasAuthority('INFOADMIN')OR('DRINK')")
 	@GetMapping("/drink_information")
 	public String buy(Model model) {
 		List<BuyEntity> drinks = buyService.getAll();

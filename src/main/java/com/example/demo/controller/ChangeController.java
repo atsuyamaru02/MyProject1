@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ public class ChangeController {
 	}
 	
 	//商品変更フォームへのアクセス
+	@PreAuthorize("hasAuthority('DRINK')")
 	@GetMapping("/change")
 	public String change(Model model) {
 		ChangeForm changeForm = new ChangeForm();
@@ -52,6 +54,7 @@ public class ChangeController {
 	}
 	
 	//変更内容確認画面
+	@PreAuthorize("hasAuthority('DRINK')")
 	@GetMapping("/confirm")
 	public String changeConfirm(ChangeForm changeForm,Model model) {
 		model.addAttribute("title", "Inquiry Form");
