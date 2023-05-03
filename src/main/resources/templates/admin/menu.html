@@ -16,8 +16,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<a href="/admin/drink_information" sec:authorize="hasAuthority('DRINK')" class="btn btn-primary btn-lg" tabindex="-1" role="button">ドリンク情報</a>
 	<a href="/admin/change" sec:authorize="hasAuthority('DRINK')" class="btn btn-primary btn-lg" tabindex="-1" role="button">ドリンク変更フォーム</a>
 	<a href="/admin/add" sec:authorize="hasAuthority('DRINK')" class="btn btn-primary btn-lg" tabindex="-1" role="button">ドリンク補充フォーム</a>
-	<a href="/admin/money_stock" sec:authorize="hasAuthority('INFOADMIN')" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣状況</a>
-	<a href="/admin/money_stock" sec:authorize="hasAuthority('MONEY')" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣状況</a>
+	<a href="/admin/money_stock" sec:authorize="hasAuthority('INFOADMIN') OR hasAuthority('MONEY')" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣状況</a>
 	<a href="/admin/money_add" sec:authorize="hasAuthority('MONEY')" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣追加フォーム</a>
 	<a href="/admin/money_collect" sec:authorize="hasAuthority('MONEY')" class="btn btn-primary btn-lg" tabindex="-1" role="button">紙幣・貨幣回収フォーム</a>
 	<a href="/admin/user_add" sec:authorize="hasAuthority('INFOADMIN')" class="btn btn-primary btn-lg" tabindex="-1" role="button">ユーザー登録フォーム</a>

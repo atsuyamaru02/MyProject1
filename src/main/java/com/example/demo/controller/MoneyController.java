@@ -22,7 +22,7 @@ public class MoneyController {
 		this.moneyService = moneyService;
 	}
 	
-	@PreAuthorize("hasAuthority('INFOADMIN')OR('MONEY')")
+	@PreAuthorize("hasAuthority('INFOADMIN') OR hasAuthority('MONEY')")
 	@GetMapping("/money_stock")
 	public String moneyStock(Model model) {
 		MoneyEntity haveMoney = moneyService.haveMoney();
@@ -31,7 +31,7 @@ public class MoneyController {
 		return "admin/money_stock";
 	}
 	
-	@PreAuthorize("hasAuthority('DRINK')")
+	@PreAuthorize("hasAuthority('MONEY')")
 	@GetMapping("/money_add")
 	public String moneyAdd(Model model) {
 		MoneyEntity haveMoney = moneyService.haveMoney();
@@ -105,7 +105,7 @@ public class MoneyController {
 		return "redirect:/admin/money_add";
 	}
 	
-	@PreAuthorize("hasAuthority('DRINK')")
+	@PreAuthorize("hasAuthority('MONEY')")
 	@GetMapping("/money_collect")
 	public String moneyCollect(Model model) {
 		MoneyEntity haveMoney = moneyService.haveMoney();

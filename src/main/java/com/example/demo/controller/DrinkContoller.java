@@ -22,7 +22,7 @@ public class DrinkContoller {
 	}
 	
 	//ドリンク情報画面へのアクセス
-	@PreAuthorize("hasAuthority('INFOADMIN')OR('DRINK')")
+	@PreAuthorize("hasAuthority('INFOADMIN') OR hasAuthority('DRINK')")
 	@GetMapping("/drink_information")
 	public String buy(Model model) {
 		List<BuyEntity> drinks = buyService.getAll();
