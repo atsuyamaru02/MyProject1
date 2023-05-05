@@ -20,12 +20,12 @@ import com.example.demo.service.BuyService;
 
 @Controller
 @RequestMapping("/admin")
-public class AddContoller {
+public class AddController {
 	
 	private final AddService addService;
 	private final BuyService buyService;
 	
-	public AddContoller(AddService addService, BuyService buyService) {
+	public AddController(AddService addService, BuyService buyService) {
 		this.addService = addService;
 		this.buyService = buyService;
 	}
@@ -57,11 +57,11 @@ public class AddContoller {
 	}
 	
 	@PostMapping("/getDrinkName")
-	public Map<Integer, String> getDrinkName(AddForm addForm){
-		Map<Integer, String> result = new LinkedHashMap<Integer, String>();
+	public Map<String, String> getDrinkName(AddForm addForm){
+		Map<String, String> result = new LinkedHashMap<String, String>();
 		BuyEntity buy = buyService.getById(addForm.getId());
 		if(buy != null) {
-			result.put(buy.getId(), buy.getName());
+			result.put(String.valueOf(buy.getId()), buy.getName());
 		}else {
 			result.put(null, null);
 		}
