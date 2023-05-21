@@ -1,5 +1,6 @@
 package com.example.demo.form;
 
+//紙幣・貨幣追加・回収フォーム
 public class MoneyForm2 {
 	
 	private int thousand;

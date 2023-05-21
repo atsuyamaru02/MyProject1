@@ -119,6 +119,7 @@ public class BuyController {
 		return "redirect:/user/buy";
 	}
 	
+	//お金投入処理
 	@PostMapping("/money")
 	public String change(Model model,@Validated MoneyForm moneyForm,BindingResult result){
 		model.addAttribute("moneyForm", moneyForm);
@@ -152,10 +153,5 @@ public class BuyController {
 		}
 		return "user/buy";
 	}
-	
-//	@PostMapping("/login")
-//	public String login() {
-//		return "admin/menu";
-//	}
 
 }

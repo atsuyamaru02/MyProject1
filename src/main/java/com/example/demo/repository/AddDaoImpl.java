@@ -14,6 +14,7 @@ public class AddDaoImpl implements AddDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	// ドリンクの在庫を変更（追加）する
 	@Override
 	public int update(BuyEntity buy) {
 		return jdbcTemplate.update("UPDATE vendingmachine.drink_menu_list SET stock = ? WHERE id = ?",buy.getStock(),buy.getId());

@@ -17,23 +17,27 @@ public class BuyServiceImpl implements BuyService {
 		this.dao = dao;
 	}
 	
+	//ドリンク一覧を取得
 	@Override
 	public List<BuyEntity> getAll() {
 		List<BuyEntity> list = dao.getAll();
 		return list;
 	}
 
+	//指定したIDのドリンク情報を取得
 	@Override
 	public BuyEntity getById(int id) {
 		BuyEntity buy = dao.getById(id);
 		return buy;
 	}
 	
+	//ドリンク購入履歴を追加
 	@Override
 	public void sava(HistoryEntity history) {
 		dao.insertHistory(history);
 	}
 
+	//ドリンク在庫を1つ減らす
 	@Override
 	public void reduceOne(int id) {
 		dao.reduceOne(id);

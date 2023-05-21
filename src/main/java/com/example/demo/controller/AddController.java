@@ -30,6 +30,7 @@ public class AddController {
 		this.buyService = buyService;
 	}
 	
+	//ドリンク補充画面へのアクセス
 	@PreAuthorize("hasAuthority('DRINK')")
 	@GetMapping("/add")
 	public String add(Model model) {
@@ -38,6 +39,7 @@ public class AddController {
 		return "admin/add";
 	}
 	
+	//ドリンク補充処理
 	@PostMapping("/add")
 	public String confirm(Model model,@Validated AddForm addForm,BindingResult result, RedirectAttributes redirectAttributes){
 		if(result.hasErrors()) {
@@ -56,6 +58,7 @@ public class AddController {
 		return "redirect:/admin/add";
 	}
 	
+	//ドリンクIDからドリンク名を取得する処理
 	@PostMapping("/getDrinkName")
 	public Map<String, String> getDrinkName(AddForm addForm){
 		Map<String, String> result = new LinkedHashMap<String, String>();

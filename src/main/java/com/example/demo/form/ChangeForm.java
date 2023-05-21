@@ -1,4 +1,3 @@
-//商品変更フォーム
 package com.example.demo.form;
 
 import javax.validation.constraints.Max;
@@ -8,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+//商品変更フォーム
 public class ChangeForm {
 	
 	@NotNull(message="1～4の数字を選択してください")

@@ -18,13 +18,7 @@ private final JdbcTemplate jdbcTemplate;
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-//	@Override
-//	public void insertHistory(History history) {
-//		jdbcTemplate.update("INSERT INTO purchase_history(name, price, hotcold, quantity, buydatetime) VALUES(?, ?, ?, ?, ?)",
-//				history.getName(), history.getPrice(), history.getHotcold(), history.getQuantity(), history.getBuydatetime() );
-//
-//	}
-
+	//購入履歴一覧を取得
 	@Override
 	public List<HistoryEntity> getAll() {
 		String sql = "SELECT * FROM purchase_history";

@@ -16,6 +16,7 @@ public class MoneyDaoImpl implements MoneyDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	// 紙幣・貨幣の追加
 	@Override
 	public void increase(MoneyEntity money) {
 		String sql = "SELECT * FROM vendingmachine.money;";
@@ -36,6 +37,7 @@ public class MoneyDaoImpl implements MoneyDao {
 		
 	}
 
+	// 紙幣・貨幣の回収
 	@Override
 	public void reduce(MoneyEntity money) {
 		String sql = "SELECT * FROM vendingmachine.money;";
@@ -56,12 +58,11 @@ public class MoneyDaoImpl implements MoneyDao {
 		
 	}
 
+	// おつりが出せる状況かどうかの取得
 	@Override
 	public boolean stock() {
 		String sql = "SELECT * FROM vendingmachine.money;";
 		Map<String, Object> result = jdbcTemplate.queryForMap(sql);
-		
-		MoneyEntity haveMoney = new MoneyEntity();
 		
 		int thousand = (int)result.get("thousand");
 		int fiveHundred = (int)result.get("fiveHundred");
@@ -76,6 +77,7 @@ public class MoneyDaoImpl implements MoneyDao {
 		}
 	}
 
+	// 紙幣・貨幣の各枚数取得
 	@Override
 	public MoneyEntity haveMoney() {
 		String sql = "SELECT * FROM vendingmachine.money;";

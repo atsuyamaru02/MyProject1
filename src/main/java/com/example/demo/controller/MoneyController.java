@@ -22,6 +22,7 @@ public class MoneyController {
 		this.moneyService = moneyService;
 	}
 	
+	// 紙幣・貨幣状況画面へのアクセス
 	@PreAuthorize("hasAuthority('INFOADMIN') OR hasAuthority('MONEY')")
 	@GetMapping("/money_stock")
 	public String moneyStock(Model model) {
@@ -31,6 +32,7 @@ public class MoneyController {
 		return "admin/money_stock";
 	}
 	
+	// 紙幣・貨幣追加フォーム画面へのアクセス
 	@PreAuthorize("hasAuthority('MONEY')")
 	@GetMapping("/money_add")
 	public String moneyAdd(Model model) {
@@ -43,6 +45,7 @@ public class MoneyController {
 		return "admin/money_add";
 	}
 	
+	// 紙幣・貨幣追加処理
 	@PostMapping("/money_add")
 	public String moneyAdd(Model model,MoneyForm2 moneyForm, RedirectAttributes redirectAttributes){
 		model.addAttribute("moneyForm", moneyForm);
@@ -105,6 +108,7 @@ public class MoneyController {
 		return "redirect:/admin/money_add";
 	}
 	
+	// 紙幣・貨幣回収フォーム画面へのアクセス
 	@PreAuthorize("hasAuthority('MONEY')")
 	@GetMapping("/money_collect")
 	public String moneyCollect(Model model) {
@@ -117,6 +121,7 @@ public class MoneyController {
 		return "admin/money_collect";
 	}
 	
+	// 紙幣・貨幣回収処理
 	@PostMapping("/money_collect")
 	public String moneyCollect(Model model,MoneyForm2 moneyForm, RedirectAttributes redirectAttributes){
 		model.addAttribute("moneyForm", moneyForm);

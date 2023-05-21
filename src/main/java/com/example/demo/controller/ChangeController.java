@@ -53,7 +53,7 @@ public class ChangeController {
 		return "admin/change";
 	}
 	
-	//変更内容確認画面
+	//変更内容確認画面へのアクセス
 	@PreAuthorize("hasAuthority('DRINK')")
 	@GetMapping("/confirm")
 	public String changeConfirm(ChangeForm changeForm,Model model) {
@@ -76,6 +76,7 @@ public class ChangeController {
 		return buy;
 	}
 	
+	//変更内容確認画面で変更ボタン押下
 	@PostMapping("/complete")
 	public String complete(Model model,@Validated ChangeForm changeForm,BindingResult result){
 		model.addAttribute("changeForm", changeForm);

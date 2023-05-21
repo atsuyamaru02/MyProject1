@@ -19,6 +19,7 @@ public class BuyDaoImpl implements BuyDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	//ドリンク一覧を取得
 	@Override
 	public List<BuyEntity> getAll() {
 		String sql = "SELECT * FROM drink_menu_list";
@@ -38,6 +39,7 @@ public class BuyDaoImpl implements BuyDao {
 		return list;
 	}
 
+	//指定したIDのドリンク情報を取得
 	@Override
 	public BuyEntity getById(int id) {
 		String sql = "SELECT * FROM vendingmachine.drink_menu_list WHERE id = ?;";
@@ -54,6 +56,7 @@ public class BuyDaoImpl implements BuyDao {
 		return buy;
 	}
 
+	//ドリンク購入履歴を追加
 	@Override
 	public void insertHistory(HistoryEntity history) {
 		jdbcTemplate.update("INSERT INTO purchase_history(name, price, hotcold, quantity, buydatetime) VALUES(?, ?, ?, ?, ?)",
@@ -61,6 +64,7 @@ public class BuyDaoImpl implements BuyDao {
 
 	}
 
+	//ドリンク在庫を1つ減らす
 	@Override
 	public void reduceOne(int id) {
 		String sql = "SELECT * FROM vendingmachine.drink_menu_list WHERE id = ?;";

@@ -17,13 +17,7 @@ public class HistoryServiceImpl implements HistoryService {
 		this.dao = dao;
 	}
 
-
-//	@Override
-//	public void sava(History history) {
-//		dao.insertHistory(history);
-//	}
-
-
+	//購入履歴一覧を取得
 	@Override
 	public List<HistoryEntity> getAll() {
 		List<HistoryEntity> list = dao.getAll();

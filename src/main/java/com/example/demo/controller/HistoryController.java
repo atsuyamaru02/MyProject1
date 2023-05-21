@@ -20,7 +20,7 @@ public class HistoryController {
 		this.historyService = historyService;
 	}
 
-	//購入履歴
+	//購入履歴へのアクセス
 	@PreAuthorize("hasAuthority('INFOADMIN')")
 	@GetMapping("/history")
 	public String history(Model model) {

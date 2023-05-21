@@ -3,6 +3,7 @@ package com.example.demo.form;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+//紙幣・貨幣投入フォーム
 public class MoneyForm {
 	
 	@Min(0)

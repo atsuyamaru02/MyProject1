@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import com.example.demo.entity.User.Authority;
 import com.example.demo.validation.UniqueUsername;
 
+//ユーザーフォーム
 public class UserForm {
 	@UniqueUsername
 	@NotNull(message="ユーザー名を入力してください")

@@ -26,6 +26,7 @@ public class UserController {
 		this.userInfoService = userInfoService;
 	}
 
+	// ユーザー作成画面へのアクセス
 	@PreAuthorize("hasAuthority('INFOADMIN')")
 	@GetMapping("/user_add")
 	public String add(Model model) {
@@ -34,6 +35,7 @@ public class UserController {
 		return "admin/user_add";
 	}
 	
+	// ユーザー作成処理
 	@PostMapping("/user_add")
 	public String confirm(Model model,@Validated UserForm userForm,BindingResult result, RedirectAttributes redirectAttributes){
 		if(result.hasErrors()) {
@@ -48,6 +50,7 @@ public class UserController {
 		return "redirect:/admin/user_add";
 	}
 	
+	// ユーザー一覧画面へのアクセス
 	@PreAuthorize("hasAuthority('INFOADMIN')")
 	@GetMapping("/user_list")
 	public String list(Model model) {

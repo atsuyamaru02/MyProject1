@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+//商品追加フォーム
 public class AddForm {
 	@NotNull(message="1～4の数字を選択してください")
 	@Min(1)

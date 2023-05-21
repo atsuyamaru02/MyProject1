@@ -14,6 +14,7 @@ public class AddServiceImpl implements AddService {
 		this.dao = dao;
 	}
 
+	// ドリンクの在庫を変更（追加）する
 	@Override
 	public void update(BuyEntity buy) {
 		dao.update(buy);

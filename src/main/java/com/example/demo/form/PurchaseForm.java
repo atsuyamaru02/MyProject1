@@ -1,5 +1,6 @@
 package com.example.demo.form;
 
+//購入商品フォーム
 public class PurchaseForm {
 	private int id;
 	

@@ -13,9 +13,10 @@ public class ChangeServiceImpl implements ChangeService {
 	public ChangeServiceImpl(ChangeDao dao) {
 		this.dao = dao;
 	}
+	
+	//指定したIDのドリンク内容を変更
 	@Override
 	public void update(BuyEntity buy) {
-		// TODO 自動生成されたメソッド・スタブ
 		dao.update(buy);
 	}
 

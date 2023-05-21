@@ -14,6 +14,7 @@ public class ChangeDaoImpl implements ChangeDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	//指定したIDのドリンク内容を変更
 	@Override
 	public int update(BuyEntity buy) {
 		
